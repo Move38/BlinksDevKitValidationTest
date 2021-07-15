@@ -1,8 +1,9 @@
 # Validation Test for Dev Kit Blinks
 
-1. Validate RGB LEDs
-2. Validate Button
-3. Validate IR Comms
+1. Validate RGB on all 6 faces together
+2. Validate RGB on each of the 6 faces individually
+3. Validate communication w/ awake neighbors
+4. Validate cold sleep (<0.2µA)
 
 Cycle RED, GREEN, BLUE to verify all 6 LEDs light
 - look for equal brightness
@@ -11,13 +12,18 @@ Cycle RED, GREEN, BLUE to verify all 6 LEDs light
 Press button to switch modes
 - When button is pressed down, the lights should glow WHITE (RGB together)
 
-Communication mode
-- Dark by default 
-- when neighboring Blink is in Communication mode, show CYAN and MAGENTA data
+Individual mode
+- a single R, G, or B LED lights up and cycles through all 6 faces
+- continues to the next color in line and repeats
+- makes it obvious if a single LED is faulty
 
-Hold button until YELLOW to enter send mode
-- Send Mode is for surrounding Blinks to be used to test a single Blink
-- Shows YELLOW on sides without Blinks attached
-- Show CYAN and MAGENTA for Blink attached
+Communication mode
+- Low level white by default 
+- when neighboring Blink is awake, it will glow bright white
+
+Sleep mode
+- instantly starts "cold sleep" requires button press to be woken
+- cold sleep is reserved for ~10 minutes after warm sleep by default
+
 
 A little bit of serial printing just in case we want to also look at what is executing via serial monitor
